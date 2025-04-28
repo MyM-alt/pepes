@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Pitbull</title>
+</head>
+<body>
+    <main class="container">
+        <secction class="publicación">
+        <div class="imagen-principal">
+        <h2>Pepes coquetos</h2>
+        <img src="assets/img/pepethefrog.webp" class="img-fluid">
+        <h3>Inserte texto ingenioso</h3>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum, repellat.</p>
+        </div>
+    </secction>
+    <section class="comentarios">
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">Dile algo a los pibes</label>
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </div>
+    </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const commentForm = document.querySelector('.form-floating');
+    const commentTextarea = document.querySelector('#floatingTextarea');
+    const submitButton = commentForm.querySelector('input[type="submit"]');
+    const commentsSection = document.querySelector('.comentarios');
+
+    submitButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Esto es para evitar el envio del formulario y no reiniciar la pagina
+        const comment = commentTextarea.value.trim();
+
+        if (comment !== '') {
+            const newComment = document.createElement('div');
+            newComment.classList.add('card', 'mb-2'); // agrega clases de bootstrap
+            newComment.innerHTML = `
+                <div class="card-body">
+                    <p class="card-text">${comment}</p>
+                </div>
+            `;
+            commentsSection.appendChild(newComment); // esto agrega el comentario
+            commentTextarea.value = ''; // vacia el formulario tras comentar
+        } else {
+            alert('Ingrese un comentario para enviar');
+        }
+    });
+});
+    </script>
+</body>
+</html>
